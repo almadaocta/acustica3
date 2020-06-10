@@ -122,6 +122,10 @@ def processGlobal():
     flanks['P'] = request.args.get('FP')
     flanks['T'] = request.args.get('FT')
 
+    print(structures)
+    print(rooms)
+
+
     RGLOBAL, IDGLOBAL = rGlobal(structures,rooms,flanks,coverings)
     
     F=[100,125,160,200,250,315,400,500,630,800,1000,1250,1600,2000,2500,3150,4000,5000]
@@ -131,8 +135,7 @@ def processGlobal():
 
     dataGlobal = get_indicadores_global(RGLOBAL[len(RGLOBAL) - 1 ])
     
-    print(structures)
-    print(rooms)
+    
 
     return jsonify({
         "RGLOBAL"   :  RGLOBAL,
