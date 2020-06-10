@@ -1,0 +1,42 @@
+.mainMenu{
+    width: 100vw;
+    height: 7vh;
+    background-color: #e0e0e0;
+    z-index: 99;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.mainMenu button{
+    width: 25vw;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.2em;
+    font-size: 1em;
+    font-weight: 800;
+    border: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    z-index: 10;
+    background: transparent;
+    outline: none;
+    cursor: auto;
+    opacity: 0.25;
+    transition: 0.6s;
+}
+.mainMenu .active{
+    opacity: 1;
+    cursor: pointer;
+}
+.selectedMainMenu{
+    z-index: 5;
+    width: 25vw;
+    height: 100%;
+    background-color: #c1d5e0;
+    position: absolute;
+    left: 0;
+    transition: ease-in-out 0.3s;
+}

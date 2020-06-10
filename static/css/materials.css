@@ -1,0 +1,116 @@
+.materialsContainer{
+    height: 27vh;
+    background: #fafafa;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    border-bottom: 2px solid #212121;
+    display: none;
+    margin-top:7vh;
+    position: relative;
+    z-index: 90;
+}
+
+.materialsContainer img{
+    width: 33.3%;
+    height: auto;
+}
+.materialsContainer .hide{
+  display: none;
+}
+.materialsData{
+    width: 33.3%;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.selectSpan p{
+    margin: 0;
+    margin-bottom: 5%;
+    align-self: flex-start;
+}
+.selectSpan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    position: relative;
+    width: 100%;
+  }
+
+
+.subMenu{
+
+   
+    position: absolute;
+    z-index: 1;
+    top:0;
+    width: 100vw;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+    transition: all 0.3s;
+    
+
+}
+.subMenu select {
+  
+  padding: 0%;
+  transition: 0.15s;
+  cursor: pointer;
+  width: 33.3vw;
+  height: 95%;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+ 
+  }
+
+
+
+
+
+
+.addMaterialsContainer{
+    width: 33.3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 75%;
+}
+.processMaterial{
+    margin-bottom: 5%;
+
+}
+.addMaterials, .processMaterial {
+    border: none;
+    background-color: #212121;
+    box-shadow: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 10vw;
+    height: 5vh;
+    font-size: 0.7em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-family: 'Roboto', sans-serif;
+    color: #FAFAFA;
+    cursor: pointer;
+    transition: 0.15s;
+    position: relative;
+  }
+  .addMaterials:hover, .processMaterial:hover {
+  background-color: #536dfe;
+}

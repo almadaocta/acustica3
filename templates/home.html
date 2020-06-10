@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Reducción sonora</title>
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">
+    <script type=text/javascript src="{{url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fbb336884d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  </head>
+  <body>
+
+
+  <div class='mainMenu'>
+    <div class='selectedMainMenu'></div>
+    <button class="measurementsButton active">Dimensiones</button>
+    <button class="materialsButton">Estructura</button>
+    <button class="coveringsButton">Recubrimientos</button>
+    <button class="flanksButton">Flancos</button> 
+  </div>
+  <div class='subMenu'>
+    <select class='pared' name="pared" id="pared">
+      <option value="T" selected>Techo</option>
+      <option value="P">Piso</option>
+      <option value="D">Divisoria</option>
+      <option value="L1">Lateral derecho</option>
+      <option value="L2">Lateral izquierdo</option>
+    </select>
+  </div> 
+  <div class='coveringsSubMenu'>
+    <span>
+      <p>Recinto:</p>
+      <select class='recinto' name="pared" id="recinto">
+        <option value="0" selected>Emisor</option>
+        <option value="1" >Receptor</option>
+      </select>
+    </span>
+    <span>
+      <p>Superficie:</p>
+      <select class='paredC' name="pared" id="paredC">
+        <option value="T" selected>Techo</option>
+        <option value="P">Piso</option>
+        <option value="D">Divisoria</option>
+        <option value="L1">Lateral derecho</option>
+        <option value="L2">Lateral izquierdo</option>
+      </select>
+    </span>
+    
+    
+    
+  </div>       
+  <div class='inputContainer'>
+    
+    <div class='measurementsContainer animate__animated animate__fadeIn'>
+      <img src="/static/images/measurements.png">
+      <div class="measurements">
+        <column>
+          <span>
+            <p>Altura (H)</p>
+            <input type="number" step="any"  min="0" id="height" tabindex="1">
+            <p>m</p>
+          </span>
+          <span>
+            <p>Ancho (T)</p>
+            <input type="number" step="any" min="0" id="width" tabindex="2">
+            <p>m</p>
+          </span>
+        </column>
+        <column>
+          <span>
+            <p>Largo (L1)</p>
+            <input type="number" step="any" min="0" id="length1" tabindex="3">
+            <p>m</p>
+          </span>
+          <span>
+            <p>Largo (L2)</p>
+            <input type="number" step="any" min="0" id="length2" tabindex="4 ">
+            <p>m</p>
+          </span>
+        </column>
+        
+      </div>
+      
+      <div class="addMeasurementsContainer">
+        <button class='addMeasurements'>Continuar<i class="fas fa-chevron-right"></i></button>
+        <p class="error1 error animate__animated animate__slideInDown">Completá todos los campos</p>
+        <p class="error2 error animate__animated animate__slideInDown">Los valores deben ser mayores a 0</p>
+      </div>
+    </div>
+    <div class='materialsContainer animate__animated animate__fadeIn'>
+      <img class="iP hide animate__animated animate__fadeIn" src="/static/images/measurementsP.png">
+      <img class="iT animate__animated animate__fadeIn" src="/static/images/measurementsT.png">
+      <img class="iL1 hide animate__animated animate__fadeIn" src="/static/images/measurementsL2.png">
+      <img class="iL2 hide animate__animated animate__fadeIn" src="/static/images/measurementsL1.png">
+      <img class="iD hide animate__animated animate__fadeIn " src="/static/images/measurementsD.png">
+      <div class="materialsData">
+        <span class="selectSpan">
+          <p>Material</p>
+          <select name="material" id="material">
+            <option value="99">Selecioná un material</option>
+            <option value="1">Hormigón 16 cm</option>
+            <option value="2">Hormigón 18 cm</option>
+            <option value="3">Hormigón 20 cm</option>
+            <option value="4">Hormigón 22 cm</option>
+            <option value="5">Hormigón 24 cm</option>
+            <option value="6">Ladrillo hueco de 10 cm</option>
+            <option value="7">Ladrillo hueco de 15 cm</option>
+            <option value="8">Ladrillo hueco de 20 cm</option>
+            <option value="9">Ladrillo macizo 22 cm</option>
+          </select>
+      </div>
+      
+      <div class="addMaterialsContainer">
+        <button class='addMaterials'>Continuar<i class="fas fa-chevron-right"></i></button>
+        <p class="error1 error animate__animated animate__slideInDown">Completá todos los campos</p>
+        <p class="error2 error animate__animated animate__slideInDown">Los valores deben ser mayores a 0</p>
+        <p class="error4 error animate__animated animate__slideInDown">Configurá todas las superficies</p>
+      </div>
+    </div>
+    <div class='coveringsContainer animate__animated animate__fadeIn'>
+      <img class="iEP hide animate__animated animate__fadeIn" src="/static/images/measurementsEP.png">
+      <img class="iET animate__animated animate__fadeIn" src="/static/images/measurementsET.png">
+      <img class="iEL1 hide animate__animated animate__fadeIn" src="/static/images/measurementsEL2.png">
+      <img class="iEL2 hide animate__animated animate__fadeIn" src="/static/images/measurementsEL1.png">
+      <img class="iED hide animate__animated animate__fadeIn " src="/static/images/measurementsD.png">
+      <img class="iRD hide animate__animated animate__fadeIn " src="/static/images/measurementsD.png">
+      <img class="iRP hide animate__animated animate__fadeIn" src="/static/images/measurementsRP.png">
+      <img class="iRT hide animate__animated animate__fadeIn" src="/static/images/measurementsRT.png">
+      <img class="iRL2 hide animate__animated animate__fadeIn" src="/static/images/measurementsRL2.png">
+      <img class="iRL1 hide animate__animated animate__fadeIn" src="/static/images/measurementsRL1.png">
+ 
+      <div class="coveringsData">
+        <span class="selectSpan">
+          <p>Material</p>
+          <select name="material" id="coverings">
+            <option value="99">Sin recubrimiento</option>
+            <option value="1">1x Placa de Yeso 12.5mm + Lana de Vidrio 50mm</option>
+            <option value="2">1x Placa de Yeso 12.5mm + Lana de Vidrio 100mm</option>
+            <option value="3">2x Placa de Yeso 12.5mm + Lana de Vidrio 50mm</option>
+            <option value="4">2x Placa de Yeso 12.5mm + Lana de Vidrio 100mm</option>
+          </select>
+      </div>
+      
+      <div class="addcoveringsContainer">
+        <button class='addcoverings'>Continuar<i class="fas fa-chevron-right"></i></button>
+        <p class="error1 error animate__animated animate__slideInDown">Completá todos los campos</p>
+        <p class="error2 error animate__animated animate__slideInDown">Los valores deben ser mayores a 0</p>
+        <p class="error4 error animate__animated animate__slideInDown">Configurá todas las superficies</p>
+      </div>
+    </div>
+    <div class='flanksContainer animate__animated animate__fadeIn'>
+      <img src="/static/images/measurements.png">
+      <div class="flanks">
+        <column>
+          <span>
+            <p>Techo</p>
+            <select class="FT flankSelect" id="flankSelect">
+              <option value="T">Tipo T</option>
+              <option value="X">Tipo X</option>
+            </select>
+          </span>
+          <span>
+            <p>Piso</p>
+            <select class="FP flankSelect" id="flankSelect">
+              <option value="T">Tipo T</option>
+              <option value="X">Tipo X</option>
+            </select>
+          </span>
+        </column>
+        <column>
+          <span>
+            <p>Lateral derecho</p>
+            <select class="FR flankSelect" id="flankSelect">
+              <option value="T">Tipo T</option>
+              <option value="X">Tipo X</option>
+            </select>
+          </span>
+          <span>
+            <p>Lateral Izquierdo</p>
+            <select class="FL flankSelect" id="material2">
+              <option value="T">Tipo T</option>
+              <option value="X">Tipo X</option>
+            </select>
+          </span>
+        </column>
+      </div>
+      
+      <div class="addMeasurementsContainer">
+       
+      </div>
+    </div>
+
+
+  </div>
+    
+ 
+  <div class="graphContainer">
+
+
+      
+      
+    <div class='Graph animate__animated animate__fadeIn' id="T">
+        <div class="indicadoresContainer animate__animated animate__fadeIn">
+          <span>R,w:<value class='rwValue'></value></span>
+          <span>STC:<value class='stcValue'></value></span> 
+        </div>
+    </div>  
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="D">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="P">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="L1">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="L2">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn" id="GGlobal">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="L2">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="ET">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="EP">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="ED">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="EL1">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="EL2">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="RT">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="RP">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="RD">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="RL1">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+    <div class="disabledGraph Graph animate__animated animate__fadeIn"id="RL2">
+      <div class="indicadoresContainer animate__animated animate__fadeIn">
+        <span>R,w:<value class='rwValue'></value></span>
+        <span>STC:<value class='stcValue'></value></span> 
+      </div>
+    </div>
+</div>
+    
+
+    <script  src="{{url_for('static', filename='js/process.js') }}"></script>
+    <script  src="{{url_for('static', filename='js/graph.js') }}"></script>
+    <script  src="{{url_for('static', filename='js/graphGlobal.js') }}"></script>
+    <script  src="{{url_for('static', filename='js/graphCovering.js') }}"></script>
+    <script  src="{{url_for('static', filename='js/globalData.js') }}"></script>
+    <script  src="{{url_for('static', filename='js/ui.js') }}"></script>
+  </body>
