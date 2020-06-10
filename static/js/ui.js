@@ -81,7 +81,7 @@ $('.addcoverings').click(function() {
 });
 $('#material').on('change', function(e) {
 	M = $(this).closest('.materialsContainer').find('#material').val();
-	ID = $('.pared option:selected').val();
+	ID = $('.pared').val();
 	$('.pared option:selected').attr('data-material',M);
 	$(".Graph").addClass('disabledGraph');
 	$('.addMaterials').html('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');

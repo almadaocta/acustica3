@@ -62,7 +62,7 @@ def setMeasurements():
 def setStructure():     
     ID = request.args.get('ID')
     M= request.args.get('M')
-    
+    print(ID)
     structures[ID]=Structure(ID,M)  
 
     R,SD=getStructureMaterial(structures[ID])
