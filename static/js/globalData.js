@@ -1,12 +1,12 @@
 function setValues(ID,rw,stc){
 
     $("#"+ID).find('.rwValue').html(rw);
-    $("#"+ID).find('.stcValue').html(stc);
+    //$("#"+ID).find('.stcValue').html(stc);
 }
 function setGlobalValues(rw,stc){
 
     $("#GGlobal").find('.rwValue').html(rw);
-    $("#GGlobal").find('.stcValue').html(stc);
+    //$("#GGlobal").find('.stcValue').html(stc);
 }
 function setCoveringValues(IDr,IDp,rw,stc){
     if (IDr==0){
@@ -18,5 +18,5 @@ function setCoveringValues(IDr,IDp,rw,stc){
         graphdiv=document.getElementById(ID);
     }
     $("#"+ID).find('.rwValue').html(rw);
-    $("#"+ID).find('.stcValue').html(stc);
+   // $("#"+ID).find('.stcValue').html(stc);
 }

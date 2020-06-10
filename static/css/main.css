@@ -360,7 +360,7 @@ label:active:after {
   color: #536dfe;
 }
 .indicadoresContainer {
-  width: 20vw;
+  width: 10vw;
   height: 5vh;
   display: none;
   align-items: center;

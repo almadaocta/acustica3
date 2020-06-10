@@ -123,7 +123,7 @@ def get_stc(Ralt):
                 if sum(difference)<10 and max(difference)<8:
                     success=1
     else:    
-        if sum(difference)<32 and max(difference)<=8:
+        if sum(difference)<=32 and max(difference)<=8:
             while success==0:
                 for i in range (len(RefCurve)):
                     RefCurve[i]=RefCurve[i]+1
