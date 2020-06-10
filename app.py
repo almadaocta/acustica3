@@ -62,7 +62,6 @@ def setMeasurements():
 def setStructure():     
     ID = request.args.get('ID')
     M= request.args.get('M')
-    print(ID)
     structures[ID]=Structure(ID,M)  
 
     R,SD=getStructureMaterial(structures[ID])
@@ -132,6 +131,9 @@ def processGlobal():
 
     dataGlobal = get_indicadores_global(RGLOBAL[len(RGLOBAL) - 1 ])
     
+    print(structures)
+    print(rooms)
+
     return jsonify({
         "RGLOBAL"   :  RGLOBAL,
         "IDGLOBAL"  :  IDGLOBAL,
