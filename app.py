@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session      
+from flask import Flask, render_template, request, jsonify, session, current_app   
 import time
 import sys
 sys.path.insert(0, 'functions')
@@ -20,25 +20,28 @@ from classes import Global
 path = os.getcwd()
 app = Flask(__name__)
 app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
-rooms={}
-structures={}
-coverings=[None]*2
-coverings[0]={}
-coverings[0]['D']=Covering([0]*18)
-coverings[0]['T']=Covering([0]*18)
-coverings[0]['P']=Covering([0]*18)
-coverings[0]['L2']=Covering([0]*18)
-coverings[0]['L1']=Covering([0]*18)
-coverings[1]={}
-coverings[1]['D']=Covering([0]*18)
-coverings[1]['T']=Covering([0]*18)
-coverings[1]['P']=Covering([0]*18)
-coverings[1]['L2']=Covering([0]*18)
-coverings[1]['L1']=Covering([0]*18)
-flanks={}
-vector={}
-settings={}
-settings['filtro']='tercios'
+
+with app.app_context():
+    rooms={}
+    structures={}
+    coverings=[None]*2
+    coverings[0]={}
+    coverings[0]['D']=Covering([0]*18)
+    coverings[0]['T']=Covering([0]*18)
+    coverings[0]['P']=Covering([0]*18)
+    coverings[0]['L2']=Covering([0]*18)
+    coverings[0]['L1']=Covering([0]*18)
+    coverings[1]={}
+    coverings[1]['D']=Covering([0]*18)
+    coverings[1]['T']=Covering([0]*18)
+    coverings[1]['P']=Covering([0]*18)
+    coverings[1]['L2']=Covering([0]*18)
+    coverings[1]['L1']=Covering([0]*18)
+    flanks={}
+    vector={}
+    settings={}
+    settings['filtro']='tercios'
+
 @app.route("/")
 def main():
     return render_template('home.html', reload = time.time())
@@ -122,8 +125,7 @@ def processGlobal():
     flanks['P'] = request.args.get('FP')
     flanks['T'] = request.args.get('FT')
 
-    print(structures)
-    print(rooms)
+
 
 
     RGLOBAL, IDGLOBAL = rGlobal(structures,rooms,flanks,coverings)
