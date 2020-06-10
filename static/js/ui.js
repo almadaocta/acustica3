@@ -72,8 +72,6 @@ $('.addcoverings').click(function() {
 
 
 
-
-
 	FL = $('.FL').val();
 	FR = $('.FR').val();
 	FT = $('.FT').val();
